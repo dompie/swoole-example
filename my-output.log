@@ -1,0 +1,15 @@
+dev01:~/swoole-example/websocket (master) $ php -f broken.php https://[my-host]
+PHP Deprecated:  Swoole\Event::rshutdown(): Event::wait() in shutdown function is deprecated in Unknown on line 0
+[21.Sep 09:07:07.00725][DEBUG] GET [my-host].com/api/me in 0.367812s
+PHP Fatal error:  Uncaught JsonException: Control character error, possibly incorrectly encoded in /home/swoole-example/websocket/Client/Request/Api/Member/GetMe.php:23
+Stack trace:
+#0 /home/swoole-example/websocket/Client/Request/Api/Member/GetMe.php(23): json_decode()
+#1 /home/swoole-example/websocket/Client/HttpClient.php(81): Websocket\Client\Request\Api\Member\GetMe->processResponseData()
+#2 /home/swoole-example/websocket/broken.php(29): Websocket\Client\HttpClient::executeBlockingRequest()
+#3 [internal function]: {closure}()
+#4 {main}
+  thrown in /home/swoole-example/websocket/Client/Request/Api/Member/GetMe.php on line 23
+dev01:~/swoole-example/websocket (master) [!255] $ php -f working.php [my-host]
+PHP Deprecated:  Swoole\Event::rshutdown(): Event::wait() in shutdown function is deprecated in Unknown on line 0
+example1:
+string(237) "{"account":{...}}"
